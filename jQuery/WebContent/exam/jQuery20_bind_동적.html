@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="demo2">
+	<button>add</button>
+	<ul>
+		<li>test1</li>
+		<li>test2</li>
+		<li>test3</li>	
+	</ul>
+</div>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+//button이 bind되기 전 맨 처음 이벤트 걸기
+$('#demo2 li').bind('click', function(){
+	alert($(this).text());
+});
+//비동적 처리
+/*
+$('#demo2 button').bind('click', function(){
+	$('#demo2 ul').append('<li>added</li>');
+});
+*/
+
+//동적 처리
+$('#demo2 button').bind('click', function(){
+	$('#demo2 li').unbind('click');
+	$('#demo2 ul').append('<li>added</li>').find($('li')).click(function(){
+		alert($(this).text());
+	});
+});
+
+
+</script>
+</html>

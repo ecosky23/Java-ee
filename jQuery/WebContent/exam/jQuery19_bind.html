@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="wrap">
+	<h3><a href="javascript:void(0)">title</a></h3>
+</div>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$('h3').on('click', function(){
+	let length = $('h3').length;
+	let targetHTML = $('h3').html();
+	
+	$('#wrap').append('<h3>'+length+'-'+targetHTML+'</h3>');
+	
+});
+
+//1초뒤에 이벤트 제거
+setTimeout(function(){
+	$('h3').off();
+	alert('이벤트가 제거');
+}, 1000);
+
+
+</script>
+</html>
+<!-- 
+bind 는 deprecated 가 되었으므로 비추천 ! 
+*(bind는 동적처리 불가; 중간에 추가된 항목에 대하여 이벤트 처리 불가)
+bind 로 연결되는 이벤트는 unbind()로 제거한다. 
+on 으로 연결되는 이벤트는 off()로 제거한다.  -->

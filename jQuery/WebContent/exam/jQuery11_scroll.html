@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.jbBox{
+	height: 2000px;
+	
+
+}
+.jbColor{
+	background-color: tomato;
+}
+</style>
+</head>
+<body>
+<div class="jbBox"></div>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- 다운받지 않고 인터넷에 연결해서 jQuery를 가져온다. -->
+<script type="text/javascript">
+$().ready(function(){
+	$(window).scroll(function(){//$(window): 현재창
+		$('.jbBox').addClass('jbColor');//클래스를 추가해줘서 휠을 움직이면 색이 변한다.
+	});
+});
+
+</script>
+</html>
+<!-- 
+.scroll() : 선택한 객체가 스크롤 이벤트가 발생했을때 감지하여 작업을 수행
+
+ -->

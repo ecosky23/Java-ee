@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+table{
+	border: 1px solid red;
+	padding: 0;/*안쪽여백 padding: 0위 0오른쪽 0아래 0왼쪽;와 같은 개념*/
+}
+th{
+	background: yellow;
+	width: 100px;
+	border: #000000 1px solid;
+	padding:10px 0;
+}
+
+td{
+	width: 100px;
+	border: #000000 1px solid;
+	padding: 0 0 0 0;
+	text-align:center;
+}
+
+</style>
+</head>
+<body>
+<p style="font-size: 20px;">sample.txt파일 가져오기</p>
+<button id="b1">제목</button>&nbsp;&nbsp;&nbsp;
+<button id="b2">내용</button><br><br>
+
+<table>
+	<tr id="div1"></tr>
+	<tr id="div2"></tr>
+</table>
+
+
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- 다운받지 않고 인터넷에 연결해서 jQuery를 가져온다. -->
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#b1').click(function(){
+		$('#div1').load('sample.txt #key')
+	});
+	
+	$('#b2').click(function(){
+		$('#div2').load('sample.txt .value')
+	});
+	
+});
+
+
+
+</script>
+</html>
+
+<!-- 
+
+padding : 10px(top,bottom) 0(right,left);
+
+padding : 10px(top right bottom left)
+
+padding-top: 10px;
+
+
+ -->

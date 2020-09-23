@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<select id="animal">
+		<option>lion</option>
+		<option>bear</option>
+		<option>elephant</option>
+		<option>giraffe</option>
+		<option>tiger</option>
+	</select>
+	
+	<select onchange="go()">
+		<option>apple</option>
+		<option>orange</option>
+		<option>strawberry</option>
+		<option>melon</option>
+		<option>kiwi</option>
+	</select>
+<br>
+<div id="output"></div>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#animal').change(function(){
+		let value = $('select#animal > option:selected').val();//select 아래의 option이 선택되었을 때의 값  //id가 animal인 select의 값을 나타낸다.
+		$('#output').text(value+"를 선택").css('color','red');
+	});
+});
+
+function go(){
+	let value = $('select:eq(1) > option:selected').val();//eq = 같다 표시  , eq(1)은 두번째 select와 같다. 첫번째는 select(0)이다.
+	$('#output').text(value+"를 선택").css('color','blue');
+}
+
+
+
+</script>
+</html>
+
+<!-- 
+자손(자식) 선택자
+상위태그 > 하위태그
+자손은 바로 아래 테그
+
+후손
+상위태그 하위태그
+후손은 하위태그 모두포함한 것을 말한다.
+ -->

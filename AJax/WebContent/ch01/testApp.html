@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form name="testForm" method="post">
+ <table border="1">
+ 	<tr>
+ 	 <td>이름</td>
+ 	 <td><input type="text" name="name"></td>
+ 	</tr>
+ 	<tr>
+ 	 <td>생년원일</td>
+ 	 <td><input type="text" name="birth" placeholder="ex)1995/08/03">
+ 	 </td>
+ 	</tr>
+ 	<tr>
+ 	 <td colspan="2" align="center">
+ 	 <input type="button" value="보내기" onclick="testToServer()">
+ 	 </td>
+ 	</tr>
+ 	
+ 
+ </table>
+ <br><br>
+ <div id="result"></div>
+ </form>
+</body>
+<script type="text/javascript">
+function testToServer(){
+	let name = encodeURIComponent(document.testForm.name.value);
+	let birth = encodeURIComponent(document.testForm.birth.value);
+	httpRequest = new XMLHttpRequest();
+	httpRequest.onreadystatechange = testFromServer;
+	httpRequest.open("POST","test.jsp",true);//get 방식으로 url = simple.jsp, true는 비동기 방식이다 .
+	httpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+	httpRequest.send("name="+name+"&birth="+birth);//name 데이터를 보낸다.
+	
+}
+function testFromServer(){
+	if(httpRequest.readyState==4){
+		if(httpRequest.status==200){
+		//	alert("서버응답: "+httpRequest.responseText.trim());
+			let div = document.getElementById("result");
+			div.innerHTML = "<b><font color=blue>"+httpRequest.responseText.trim()+"</font></b>";
+		}else{
+			alert(httpRequest.status);
+		}
+	}
+}
+
+</script>
+</html>

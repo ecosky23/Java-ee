@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form id="loginForm">
+	<table>
+		<tr>
+			<th width="70px"> 아이디 </th>
+			<td> <input type="text" id="id" name="id" placeholder="아이디를 입력하세요" >
+				<div id="idDiv"></div>
+			</td>		
+		</tr>
+		
+		<tr>
+			<th> 비밀번호 </th>
+			<td> <input type="password" id="pwd" name="pwd" placeholder="비밀번호를 입력하세요" >
+				<div id="pwdDiv"></div>
+			</td>		
+		</tr>
+		
+		<tr>
+			<td colspan=2 align="center"> 
+			<input type="button" value="로그인" id="loginBtn">
+			<div id="loginResult"></div>
+			</td>		
+		</tr>
+	</table>
+</form>
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+		$('#id').keyup(function(){//id칸에 글이 들어가면 자동으로 아이디를 입력하라는 것이 사라짐
+			$('#idDiv').empty();	
+		});
+		
+	$('#loginBtn').click(function(){
+		
+		$('#pwdDiv').empty();
+		
+		let id = $('#id').val();
+		let pwd = $('#pwd').val();
+		if(id==''){
+			$('#idDiv').text("아이디를 입력하세요").css('color','red').css('font-size','8pt');
+		}else if(pwd==''){
+			$('#pwdDiv').text("비밀번호를 입력하세요").css('color','red').css('font-size','8pt');
+		}else{
+			//--------------------------------------------------------
+			/* $.getJSON('jQueryAJax08_json.jsp', $('#loginForm').serialize() ,function(data){//$.getJSON('jQueryAJax08_json.jsp',보낼데이터 ,function(받는 데이터)
+				//alert(JSON.stringify(data));
+				//$('#loginResult').html(JSON.stringify(data));
+				if(data.result == 'ok'){
+					$('#loginResult').text("로그인 성공").css("color","blue").css("font-size","9pt");
+				}else if(data.result == 'fail'){
+					$('#loginResult').text("로그인 실패").css("color","red").css("font-size","9pt");
+					
+					$('#loginForm')[0].reset();//몇번째 거인지 적어야한다.
+					$('#id').focus();
+				}
+			}); */
+			//---------------------------------------------------------
+			//let sendData = 'id='+$('input[id=id]').val();
+			$.ajax({
+				type: 'post',
+				url: 'jQueryAJax08_json.jsp',
+				data: 'id='+id+'&pwd='+pwd,
+				//data: $('#loginForm').serialize(),
+				dataType: 'text',
+					
+					success: function(data){
+					//data.trim()하는 이유는 오는 데이터에 공백이 많아서 공백을 제거해줘야 한다.	
+					if(data.trim()=='ok') $('#loginResult').text("로그인 성공").css("color","blue").css("font-size","9pt");
+					else if(data.trim()=='fail') $('#loginResult').text("로그인 실패").css("color","blue").css("font-size","9pt");
+					
+					$('#loginForm').each(function(){
+						this.reset();//$를 안부지는 이유는 로그인 폼이 아니라 현재 문서전체를 초기화 하기위해서는 this를 쓴다
+						$('#id').focus();
+					});
+					},
+					
+					error: function(data){
+						console.log('error');
+					}	
+	
+			});
+		}
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="">
+	<label>이름을 입력하세요</label>
+	<input type="text" name="username" class="user">
+	<input type="button" id="submit" value="입력">
+</form>
+<br><br>
+<div id="message"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#submit').click(function(){
+		let sendData = 'username='+$('input[name=username]').val();//jQuery방법
+		//let sendData = {'username': $('.user').val()};//이름 : 값 json방법 get방식일때
+		$.ajax({
+			//type: 'get',
+			type: 'post',
+			url: 'jQueryAJax02_data.jsp',
+			data: sendData,
+			dataType: 'html',
+			success: function(result){
+				alert('성공');
+				$('#message').html(result);
+			},
+			error: function(){
+				alert('실패');
+				
+			}
+		});
+	});
+});
+
+
+
+
+</script>
+</body>
+</html>

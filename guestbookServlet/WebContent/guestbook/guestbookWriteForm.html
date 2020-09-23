@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>방명록</title>
+</head>
+<body>
+ <form name ="guestbookWriteForm" method="post" action="/guestbookServlet/GuestbookWriteServlet">
+ <h3>글쓰기</h3>
+ 
+ <table border="1" cellspacing="0" cellpadding="3">
+  <tr>
+   <td align="center">작성자</td>
+   <td><input type="text" name="name" id="name" placeholder="작성자 입력"></td>
+  </tr>
+ 
+ <tr>
+   <td align="center">이메일</td>
+   <td><input type="text" name="email" placeholder="이메일 입력"></td>
+  </tr>
+  
+  <tr>
+   <td align="center">홈페이지</td>
+   <td><input type="text" name="homepage" placeholder="http://"></td>
+  </tr>
+  
+  <tr>
+   <td align="center">제목</td>
+   <td><input type="text" name="title" placeholder="제목 입력"></td>
+  </tr>
+  
+  <tr>
+   <td align="center">내용</td>
+   <td><textarea name="content" cols="50" rows="10" style="resize:none" placeholder="내용을 입력"></textarea>
+   </td>
+  </tr>
+  
+  <tr>
+   <td colspan="2" align="center">
+   <input type="button" value="글작성" onclick="checkWriteForm()">
+   <input type="reset" value="다시작성">
+   <input type="button" value="글목록" onclick=location.href='/guestbookServlet/GuestbookListServlet?pg=1'>
+   </td>
+  
+  </tr>
+ 
+ </table>
+ 
+ </form>
+</body>
+<script type="text/javascript" src="../js/guestbook.js"></script>
+</html>

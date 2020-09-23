@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<p id="p1" style="border: 1px red solid;"><strong>Ajax</strong> 프로그래밍,<br>기초</p>
+<input type="button" value="보기" onclick="view()">
+</body>
+<script type="text/javascript">
+function view(){
+	let p1 = document.getElementById("p1");
+	
+	//alert(p1);
+//	alert(p1.tagName);//테그이름 나옴 p라고 나옴
+	//alert(p1.innerText);//내부의 문자열만 가져온다.
+	alert(p1.innerHTML);//내부의 HTML을 다가져온다. <strong>Ajax</strong> 프로그래밍,<br>기초</p>
+}
+
+
+</script>
+</html>

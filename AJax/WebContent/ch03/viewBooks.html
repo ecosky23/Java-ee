@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+책 정보를 alert로 출력<br><br>
+<div id="message"></div>
+
+</body>
+<script type="text/javascript">
+window.onload=function(){
+	loadBooks();
+}
+let httpRequest = null;
+function loadBooks(){
+	httpRequest = new XMLHttpRequest();
+	httpRequest.onreadystatechange = loadedBooks;
+	httpRequest.open("POST","books.jsp",true);
+	httpRequest.send();
+}
+function loadedBooks(){
+	if(httpRequest.readyState==4){
+		if(httpRequest.status==200){
+			let xmlDoc = httpRequest.responseXML;//XML문서로 통체로 받는 것
+			
+			var bookList = xmlDoc.getElementsByTagName("book");//book라는 이름의 테그를 list타입으로 가져온다.
+			//let message = "책 개수: "+ bookList.length + "권\n";
+			
+			let message = "책 개수: "+ bookList.length + "권<br>";
+			
+			/*
+			for(i=0; i<bookList.length; i++){
+				let book = bookList.item(i);
+				
+				let titleValue = book.getElementsByTagName("title").item(0).firstChild.nodeValue;//#text값을  가져온다. JAVA프로그래밍
+				let authorValue = book.getElementsByTagName("author").item(0).firstChild.nodeValue;//#text값을 가져온다. 코난
+				
+				//message += titleValue+"("+authorValue+")\n";
+				message += titleValue+"("+authorValue+")<br>";
+				
+			}//for
+			*/
+		
+			for(i=0; i<bookList.length; i++){
+				
+				let book = bookList[i].childNodes;
+				
+				console.log("개수: "+book.length);
+				
+				for(j=0; j<book.length; j++){
+					if(book[j].firstChild !=null){
+						if(j==1) message += "(";
+						message += book[j].firstChild.nodeValue;//enter값도 값으로 인식하기 때문에 enter값을 제외하고 값을 넣기
+					}
+				}//for j
+				
+				message += ")<br>";
+				
+			}//for
+			
+			
+			
+			
+			document.getElementById("message").innerHTML = message;//내용이 웹화면에 나오기
+			
+			//alert(message);// 내용이 경고 창으로 나오기
+		}
+	}
+}
+
+</script>
+</html>

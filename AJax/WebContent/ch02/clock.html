@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+현재시간은 <span id="clock" style="border:1px dotted red; "></span>입니다.
+</body>
+<script type="text/javascript">
+window.onload=function(){
+	printTime();
+}
+
+function printTime(){
+	let clock = document.getElementById("clock");
+	let now = new Date();
+	clock.innerHTML = now.getFullYear()+"년"
+						+(now.getMonth()+1)+"월" //1월이 0으로 되어있어서 +1을 해야 한다.
+						+now.getDate()+"일"
+						+now.getHours()+"시"
+						+now.getMinutes()+"분"
+						+now.getSeconds()+"초";//span clock자리에 넣기
+						
+	setTimeout("printTime()",1000);//단위가 1/1000초   1초마다 불러오기 그래서 시간이 계속 바뀐다.
+}
+
+</script>
+</html>

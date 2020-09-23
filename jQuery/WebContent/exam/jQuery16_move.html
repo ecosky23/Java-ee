@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<img alt="" src="../image/apple.jpg" width="200" height="200">
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$('img').mouseover(function(){
+	$(this).attr('src','../image/orange.jpg');
+}).mouseout(function(){
+	$(this).attr('src','../image/apple.jpg');
+});
+
+</script>
+</body>
+</html>

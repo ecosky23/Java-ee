@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<input type="button" value="simple.jsp" onclick="load('simple.jsp')">
+</body>
+<script type="text/javascript">
+
+var httpRequest;
+	function load(url){
+		httpRequest = new XMLHttpRequest();
+		httpRequest.onreadystatechange = viewMessage;//(on~할때) 나한테 변화가 생겼을 viewMessage함수를 실행 해라
+		httpRequest.open("GET",url,true);//get 방식으로 url = simple.jsp, true는 비동기 방식이다 .
+		httpRequest.send("");//보낼 데이터는 없다.
+	}
+	
+	function viewMessage(){
+		if(httpRequest.readyState==4){
+			if(httpRequest.status==200){
+				//alert(httpRequest.responseText);
+				console.log(httpRequest.responseText);
+			}else{
+				alert(httpRequest.status);
+			}
+		}
+	}	
+</script>
+</html>

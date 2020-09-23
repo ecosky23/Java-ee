@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.container{
+	position:absolute; /*절대 위치가 변하지 않는다.*/
+	top: 10px; /*위의 간격이 10px이다.*/
+	left: 100px;
+	height: 300px;
+	width: 600px;
+	border: 1px dotted red;
+	font-size: 10px;
+}
+</style>
+</head>
+<body>
+<a id="welcome" href="javascript:void(0)">처음화면</a><br><br>
+<a id="sample" href="#">샘플화면</a><br><br>
+
+<div id="result" class="container" style="font-size: 20px;"></div>
+<div></div>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- 다운받지 않고 인터넷에 연결해서 jQuery를 가져온다. -->
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#result').text('왼쪽메뉴를 선택하세요');
+	
+	$('#welcome').click(function(){
+		$('#result').text('Welcome jQuery');
+		$('#result').css('font-weight','bold');
+		$('#result').css('font-size','50pt');
+		$('#result').css('color','red');
+	})
+	
+	$('#sample').click(function(){
+		$('#result').removeAttr('style');//style속성 없애기
+		$('#result').load('sample.txt');
+		
+	});
+	
+});
+
+
+
+
+</script>
+</html>

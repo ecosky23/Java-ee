@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p>키보드 이벤트 발생</p>
+<h1>0/50</h1>
+<textArea rows="5" cols="70"></textArea>
+
+
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$('textArea').keyup(function(){
+	console.log('나왔다');//ctrl, shift, alt가 눌린것을 확인 할 수 있다., keypress는 안된다.
+	
+	var length = $(this).val().length;
+	
+	$('h1').html(length+'/50');
+	if(length>50){
+		$('h1').css('color','red');
+	}else{
+		$('h1').css('color','blue');
+	}
+});
+
+
+</script>
+</html>
+<!-- 
+keydown: 키보드가 눌러지는 순간 발생. 
+특수키(Ctrl, Shift, Alt) 인식. 
+대소문자 구분 X
+
+keypress: 글자가 입력될 때 발생. 
+한글X, 특수키 X, 특수키(Ctrl, Shift, Alt) 인식X,
+ 대소문자 구분 O
+ 
+keyup[가장 많이 쓰임]: 입력 후 손가락이 떼어질 때 (release) 발생. 
+특수키(Ctrl, Shift, Alt) 인식. 
+대소문자 구분X 
+-->

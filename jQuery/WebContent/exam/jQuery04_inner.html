@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<input type="text" id="name" value="">
+<p id="disp"><strong>값을 바꿔보시오</strong></p>
+<input type="button" id="btn" value="버튼">
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#btn').click(function(){
+		//document.getElementById("name").value = "홍길동";//aJax방식
+		//$('#name').val('또치');//위아래가 같은 것이다. 버튼을 누르면 글이 들어간다.jQuery방식
+		
+		//let txt = document.getElementById('disp').innerText;//aJax방식
+		//let txt = $('#disp').text();//위아래 같은 것이다. jQuery방식
+		//alert(txt);//값을 바꿔보시오 이것만 나온다.
+		
+		//let html = document.getElementById('disp').innerHTML;
+		//let html = $('disp').html();//위아래가 같은 것이다.
+		//alert(html);//<strong>값을 바꿔보시오</strong>이렇게 나온다.
+		
+	//	document.getElementById('disp').innerText = "Have a nice day!!"; 글을 넣어준다.
+	//	$('#disp').text("Have a nice day!!");
+	//	$('#disp').css('color','red');
+	//	$('#disp').css('font-weight','bold');
+	
+	$('#disp').html("<b style='color: red;'>Hava a nice day!!</b>");
+		
+	});
+});
+
+</script>
+</html>

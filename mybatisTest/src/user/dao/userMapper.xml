@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="userSQL">
+ 	<resultMap type="user" id="userResult"><!-- user를 userResult로 부른다. -->
+ 		<result property="name" column="NAME"/><!-- property는 DTO의 변수 COLUMN은 오라클의 컬럼이다. 2프로그램을 연결해주는 것-->
+ 		<result property="id" column="ID"/><!-- property는 DTO의 변수 COLUMN은 오라클의 컬럼이다. 2프로그램을 연결해주는 것-->
+ 		<result property="pwd" column="PWD"/><!-- property는 DTO의 변수 COLUMN은 오라클의 컬럼이다. 2프로그램을 연결해주는 것-->
+ 	</resultMap>							<!-- 이클립스의 프로그램과 오라클의 변수의 이름이 다를때  강제로 연결해 주기 위해 사용한다.-->
+ 	
+ 	
+ 	<insert id="write" parameterType="user">
+ 		insert into usertable values(#{name},#{id},#{pwd})
+ 	</insert>
+ 	<!-- 파라미터 타입의 경우에는 풀쿼리를 써야 된다. -->
+ 	<select id="getUserList" resultMap="userResult"><!--데이타를 UserDTO에 담아서 list에 넣어준다. list값을 리턴한다. -->
+ 		select * from usertable
+ 	</select>
+ 	
+ 	<select id="getSearch" parameterType="String" resultType="user">
+ 		select * from usertable where id = #{id}
+ 	</select>
+ 	<update id="modify" parameterType="java.util.Map"><!-- 넘어오는 것의 유형 -->
+ 		update usertable set name = #{name}, pwd = #{pwd} where id = #{id}
+ 	</update>
+ 	<delete id="delete" parameterType="String">
+ 		delete usertable where id = #{id}
+ 	</delete>
+ 	<select id="search" resultType="user" parameterType="java.util.Map"><!--parameterType넘어오는 타입적기  -->
+ 	<!-- 	select * from usertable where ${searchType} like '%'||#{searchValue}||'%' -->
+ 	select * from usertable where
+ 	<if test="searchType== 'name'">
+ 		name like '%'||#{searchValue}||'%'
+ 	</if>
+ 	<if test="searchType=='id'">
+ 		id like '%'||#{searchValue}||'%'
+ 	</if>
+ 	
+ 	
+ 	</select><!-- searchType는 상수로 취급하기 때문에 $를 사용한다 -->
+ 	
+ </mapper>

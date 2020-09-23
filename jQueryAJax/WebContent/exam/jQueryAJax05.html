@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<button id="testButton">클릭하시오</button>
+<br><br>
+<div id="display">
+<table border="1" id="table">
+<thead>
+<tr>
+	<th width="100">이름</th>
+	<th width="100">주소</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+		$('#table').hide();//테이블 숨기기
+	$('#testButton').click(function(){
+		$('#table').show();//테이블 보이게 하기
+		$.getJSON('jQueryAJax05_jsonData.txt', function(data){//json의 파일을 data가 받아온다.
+			//alert(data); 그냥가져오면 객체형식으로 가져온다.
+		///////////////////////////////////////////////////////////////////////////	
+		//alert(JSON.stringify(data));//json형식으로 가져와라
+		
+		/* $.each(data, function(index, value){//data는 jsonData의 값 index는 배열의 순서, value는 배열의 값
+		//	alert(index+" , "+value.name+" : "+value.addr);//for문 형식 //value.name = value의 값의 name, value.addr = value의 값의 addr
+		
+		$.each(value, function(key, val){//value의 값을 key와 val로 나눠서 이중 for문 형식으로 행함
+			alert(key+ " : "+val);
+		});
+		
+		}); */
+		///////////////////////////////////////////////////////////////////////////	
+		/* $('#display tbody').empty();//계속 안나오게 한번 비우기
+		$.each(data, function(index, value){
+			//alert(value.name);
+			$('#display tbody').append('<tr><td>'+value.name+'</td><td>'+value.addr+'</td></tr>');
+		}); */
+		//////////////////////////////////////////////////////////////////
+		
+		$('#table tr:gt(0)').remove();//gt(0) = 0보다 크거나 같은 것들을 지워준다.// empty()대신에 사용가능
+		for(index in data){//data의 값을 index에 하나씩 넣는다. 0번째 1번째 2번째 3번째
+			$('#display tbody')
+			.append('<tr><td>'+data[index].name+'</td><td>'+data[index].addr+'</td></tr>');
+		}
+		
+		});
+	});
+</script>
+</body>
+</html>

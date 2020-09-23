@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form name="inputForm" method="post" action="">
+ <input type="text" name="name">
+ <input type="button" value="입력" onclick="helloToServer()">
+</form>
+</body>
+<script type="text/javascript">
+function helloToServer(){
+	let name = encodeURIComponent(document.inputForm.name.value);
+	httpRequest = new XMLHttpRequest();
+	httpRequest.onreadystatechange = helloFromServer;//(on~할때) 나한테 변화가 생겼을helloFromServer함수를 실행 해라
+	
+	httpRequest.open("POST","hello.jsp",true);//get 방식으로 url = simple.jsp, true는 비동기 방식이다 .
+	httpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+	httpRequest.send("name="+name);//
+}
+function helloFromServer(){
+	if(httpRequest.readyState==4){
+		if(httpRequest.status==200){
+			alert("서버응답: "+httpRequest.responseText);
+			
+		}else{
+			alert(httpRequest.status);
+		}
+	}
+}
+</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+*{margin:0 0; padding:0 0;}/*모든항목에 적용 margin 바깥족여백 padding 안쪽 여백*/
+.d1{width: 50px; height: 50px; background: red;}
+.d2{width: 50px; height: 50px; background: green; margin-top:100px; margin-left:100px;}/*margin-top은 절대 위치가 아니라 위의 div로부터 거리를 계산한다.*/
+.d3{width: 50px; height: 50px; background: blue; margin-top: 200px; margin-left:200px;}
+</style>
+</head>
+<body>
+<div class="d1"></div>
+<div class="d2"></div>
+<div class="d3"></div>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- 다운받지 않고 인터넷에 연결해서 jQuery를 가져온다. -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('div').click(function(){
+			let divOffset = $(this).offset();//this는 방금 클릭한것을 나타낸다. 
+			alert(divOffset.top+","+divOffset.left);
+		});
+	});
+</script>
+</html>
+<!-- 
+offset()
+document객체의 좌측 상단 모서리에서부터 요소까지의 좌표를 가지고 오가나 지정하는 메소드
+ -->

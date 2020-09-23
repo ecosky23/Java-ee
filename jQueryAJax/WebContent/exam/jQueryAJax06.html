@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<button id="btn">데이타 불러오기</button>
+<br><br>
+<div id="display"></div>
+
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#btn').click(function(){
+		$.getJSON('jQueryAJax05_jsonData.txt', function(data){//data 텍스트파일의 내용을 받아온것
+			//alert(JSON.stringify(data));
+		
+		$('#display').empty();
+		
+		let table = '<table border=1>'//테이블 윗부분 만들어주고
+					+'<tr>'
+					+'<th width=70>인덱스</th>'
+					+'<th width=100>이름</th>'
+					+'<th width=70>주소</th>'
+					+'</tr>';
+					
+						
+			$.each(data, function(index, items){//테이블 내용을 for문형식으로 만들어서 테이블에 붙쳐준다.
+				table += '<tr>';
+				table += '<td align=center>'+index+'</td>';
+				table += '<td align=center>'+items.name+'</td>';
+				table += '<td align=center>'+items['addr']+'</td>';
+				table += '</tr>';
+			});			
+			
+			table += '</table>';//테이블 닫아주고
+			$('#display').append(table);//div에 테이블 넣어주기
+		});
+	});
+});
+</script>
+</body>
+</html>
